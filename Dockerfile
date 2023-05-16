@@ -4,7 +4,7 @@ ARG UID=100
 ARG GID=1000
 
 RUN groupadd -g "${GID}" vault && mkdir -p /home/vault \
-  && usermod -l vault -g "${GID}" -d /home/vault _apt
+  && usermod -l vault -g "${GID}" -d /home/vault _apt && chown -R vault:vault /home/vault
 
 # Update apt and Install dependencies
 RUN apt-get update && apt install software-properties-common -y && add-apt-repository ppa:rmescandon/yq -y \
